@@ -12,16 +12,17 @@ function sendmessage (text: string) {
     radio.sendString("01" + SendMessageDestination + "XX" + text + "XX" + "10")
 }
 input.onButtonPressed(Button.A, function () {
-    sendmessage("12345678")
+    sendmessage("hello   ")
 })
 radio.onReceivedString(function (receivedString) {
     messageDestination = "" + receivedString.charAt(2) + receivedString.charAt(3)
     if (messageDestination == Id) {
         RecievedMessageBody = "" + receivedString.charAt(6) + receivedString.charAt(7) + receivedString.charAt(8) + receivedString.charAt(9) + receivedString.charAt(10) + receivedString.charAt(11) + receivedString.charAt(12) + receivedString.charAt(13)
         basic.showString(RecievedMessageBody)
-    } else {
-        basic.showString("No")
     }
+})
+input.onButtonPressed(Button.B, function () {
+    control.reset()
 })
 let RecievedMessageBody = ""
 let messageDestination = ""
